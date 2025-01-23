@@ -4,7 +4,8 @@
   "private": true,
   "main": "main.js",
   "scripts": {
-    "dev": "nodemon main.js"
+    "dev": "nodemon main.js",
+    "seed": "node seed.js"
   },
   "dependencies": {
     "body-parser": "^1.20.2",

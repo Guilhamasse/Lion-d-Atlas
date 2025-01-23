@@ -28,18 +28,17 @@ const seedData = async () => {
         // Synchronize the database (drop all existing tables and recreate them)
         await sequelize.sync({ force: true });
 
-        const sample = require('./src/seed_data/event_type.json');
-        await EventType.bulkCreate(sample);
-        delete sample;
-        const sample = require('./src/seed_data/zone.json');
-        await Zone.bulkCreate(sample);
-        delete sample;
-        const sample = require('./src/seed_data/alert.json');
-        await Alert.bulkCreate(sample);
-        delete sample;
-        const sample = require('./src/seed_data/event.json');
-        await Event.bulkCreate(sample);
-        delete sample;
+        const sampleEventType = require('./src/seed_data/event_type.json');
+        await EventType.bulkCreate(sampleEventType);
+
+        const sampleZone = require('./src/seed_data/zone.json');
+        await Zone.bulkCreate(sampleZone);
+
+        const sampleAlert = require('./src/seed_data/alert.json');
+        await Alert.bulkCreate(sampleAlert);
+
+        const sampleEvent = require('./src/seed_data/event.json');
+        await Event.bulkCreate(sampleEvent);
 
         logConsole('Sample data inserted');
     } catch (error) {
