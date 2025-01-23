@@ -5,17 +5,11 @@ services:
     build:
       context: ./back
       dockerfile: Dockerfile
-      args:
-        - BACK_API_PORT=${BACK_API_PORT}
-        - BACK_MAIL_FROM=${BACK_MAIL_FROM}
-        - BACK_EMAIL_PASS=${BACK_EMAIL_PASS}
-    env_file:
-      - .env
     ports:
       - "${BACK_API_PORT}:${BACK_API_PORT}"
     networks:
-      - lionatals_network
+      - lion-d-atlas_network
 
 networks:
-  lionatals_network:
+  lion-d-atlas_network:
     driver: bridge
