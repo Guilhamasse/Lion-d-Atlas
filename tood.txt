@@ -1,0 +1,3 @@
+-  [ ] test unitaire à chaque PR
+-  [ ] Pubilcation de la PR dans discord selon success/fail
+-  [ ] Pipeline de build sur github action avec docker
