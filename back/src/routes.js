@@ -1,4 +1,4 @@
-const alertController = require('./controllers/event');
+const alertController = require('./controllers/alert');
 const eventController = require('./controllers/event');
 const eventTypeController = require('./controllers/eventType');
 const zoneController = require('./controllers/zone');

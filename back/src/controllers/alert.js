@@ -1,24 +1,24 @@
 const formatRes = require('../helpers/formatRes')
 
-const Event = require('../models/event');
+const Alert = require('../models/alert');
 
-exports.getAllEvents = async (req, res) => {
+exports.getAllAlerts = async (req, res) => {
     try {
-        const events = await Event.findAll();
-        return res.status(200).json(formatRes('success', events))
+        const alerts = await Alert.findAll();
+        return res.status(200).json(formatRes('success', alerts))
     } catch (error) {
         return res.status(500).json(formatRes('error', null, error.message))
     }
 };
 
-exports.getEventById = async (req, res) => {
+exports.getAlertById = async (req, res) => {
     try {
-        // Check if event exists
+        // Check if alert exists
         if (!req.params.id) return res.status(400).json(formatRes('error', null, 'No id provided'));
-        const event = await Event.findByPk(parseInt(req.params.id));
-        if (!event) return res.status(404).json(formatRes('error', null, 'No event found with this id'));
+        const alert = await Alert.findByPk(parseInt(req.params.id));
+        if (!alert) return res.status(404).json(formatRes('error', null, 'No alert found with this id'));
 
-        return res.status(200).json(formatRes('success', event))
+        return res.status(200).json(formatRes('success', alert))
     } catch (error) {
         return res.status(500).json(formatRes('error', null, error.message))
     }
