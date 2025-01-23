@@ -1,14 +1,12 @@
 [
     {
         "id": 1,
-        "name": "Inondations",
-        "description": "description Inondations",
-        "level": 120
+        "name": "inondations",
+        "description": "description Inondations"
     },
     {
         "id": 2,
-        "name": "Séisme",
-        "description": "description Séisme",
-        "magnitude": 7
+        "name": "séisme",
+        "description": "description Séisme"
     }
 ]
