@@ -17,11 +17,11 @@ const Data = sequelize.define('Data', {
         allowNull: true,
     },
     value_disaster: {
-        type: DataTypes.JSON,
+        type: DataTypes.FLOAT,
         allowNull: true,
     },
     severity: {
-        type: DataTypes.ENUM('Low', 'Medium', 'High', 'Critical'),
+        type: DataTypes.STRING(50),
         allowNull: true,
     },
     updatedAt: {

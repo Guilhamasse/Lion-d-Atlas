@@ -30,6 +30,16 @@ const Event = sequelize.define('Event', {
         type: DataTypes.ENUM('Low', 'Medium', 'High', 'Critical'),
         allowNull: false,
     },
+    level: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: null,
+    },
+    magnitude: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: null,
+    },
     event_type_id: {
         type: DataTypes.UUID,
         references: {
