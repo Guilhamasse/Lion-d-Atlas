@@ -4,10 +4,11 @@ import { filter } from 'rxjs';
 import { MapComponent } from './map/map.component';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
+import { IntroductionComponent } from "./introduction/introduction.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, NavbarComponent, MapComponent, FooterComponent],
+  imports: [RouterModule, NavbarComponent, MapComponent, FooterComponent, IntroductionComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
