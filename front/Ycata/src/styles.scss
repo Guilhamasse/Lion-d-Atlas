@@ -1,5 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@use "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+html {
+    scroll-behavior: smooth;
+}
+
+.text-primary{
+    color: #ECC4AC!important;
+}
+.text-secondary{
+    color: #F2A359!important;
+}
+.text-tertiary{
+    color: #F2DC5D!important;
+}
+.text-quaternary{
+    color: #240B36!important;
+}
+.text-accent{
+    color: #A4031F!important;
+}
+
+.bkg-primary{
+    background-color: #ECC4AC!important;
+}
+.bkg-secondary{
+    background-color: #F2A359!important;
+}
+.bkg-tertiary{
+    background-color: #F2DC5D!important;
+}
+.bkg-quaternary{
+    background-color: #240B36!important;
+}
+.bkg-accent{
+    background-color: #A4031F!important;
+}
