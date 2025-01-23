@@ -4,24 +4,48 @@ const backendUrl = "http://localhost:3000/api/data";
 
 // Configuration des capteurs par zone
 const sensors = [
-  { dataId: 1, zoneId: 1, allowedDisasters: ["séisme"] },
-  { dataId: 2, zoneId: 2, allowedDisasters: ["inondation"] },
-  { dataId: 3, zoneId: 3, allowedDisasters: ["séisme", "inondation"] },
-  { dataId: 4, zoneId: 4, allowedDisasters: ["inondation"] },
-  { dataId: 5, zoneId: 5, allowedDisasters: ["séisme"] }
+  { id: null, zone: 1, allowedDisasters: ["séisme"] },
+  { id: null, zone: 2, allowedDisasters: ["inondation"] },
+  { id: null, zone: 3, allowedDisasters: ["séisme", "inondation"] },
+  { id: null, zone: 4, allowedDisasters: ["inondation"] },
+  { id: null, zone: 5, allowedDisasters: ["séisme"] }
 ];
 
+const severityLevels = ['Low', 'Medium', 'High', 'Critical'];
+
+const generateSeismicData = () => {
+  return {
+    magnitude: Number((Math.random() * 8 + 1).toFixed(1)),
+    severity: severityLevels[Math.floor(Math.random() * severityLevels.length)]
+  };
+};
+
+const generateFloodData = () => {
+  return {
+    level: Math.floor(Math.random() * 490 + 10), // 10-500 cm
+    severity: severityLevels[Math.floor(Math.random() * severityLevels.length)]
+  };
+};
+
 const generateData = (sensor) => {
-  const hasDisaster = Math.random() < 1/10;
+  const hasDisaster = Math.random() < 1/20;
   const disasterType = hasDisaster 
     ? sensor.allowedDisasters[Math.floor(Math.random() * sensor.allowedDisasters.length)]
     : null;
 
+  let disasterData = {};
+  if (disasterType === 'séisme') {
+    disasterData = generateSeismicData();
+  } else if (disasterType === 'inondation') {
+    disasterData = generateFloodData();
+  }
+
   return {
-    dataId: sensor.dataId,
-    zoneId: sensor.zoneId,
+    id: sensor.id,
+    zone: sensor.zone,
     type_disaster: disasterType,
-    value_disaster: hasDisaster ? Math.floor(Math.random() * 100) + 1 : 0,
+    value_disaster: disasterType ? disasterData : 0,
+    severity: disasterType ? disasterData.severity : null,
     updatedAt: null,
     createdAt: new Date(),
   };
@@ -34,13 +58,13 @@ setInterval(() => {
     
     axios.post(backendUrl, data)
       .then((response) => {
-        console.log(`✅ Données envoyées du capteur ${sensor.dataId} (Zone ${sensor.zoneId}):`, data);
+        console.log(`✅ Données envoyées du capteur ${sensor.id} (Zone ${sensor.zone}):`, data);
         if (data.type_disaster) {
-          console.log(`🚨 ALERTE: ${data.type_disaster} détecté dans la zone ${sensor.zoneId}!`);
+          console.log(`🚨 ALERTE: ${data.type_disaster} détecté dans la zone ${sensor.zone}!`);
         }
       })
       .catch((error) => {
-        console.error(`❌ Erreur pour le capteur ${sensor.dataId} (Zone ${sensor.zoneId}):`);
+        console.error(`❌ Erreur pour le capteur ${sensor.id} (Zone ${sensor.zone}):`);
         console.error("   - Status:", error.response?.status);
         console.error("   - Message:", error.message);
         console.error("   - URL:", backendUrl);

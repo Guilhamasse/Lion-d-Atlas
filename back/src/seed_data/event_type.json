@@ -1,1 +1,14 @@
-[]
+[
+    {
+        "id": 1,
+        "name": "Inondations",
+        "description": "description Inondations",
+        "level": 120
+    },
+    {
+        "id": 2,
+        "name": "Séisme",
+        "description": "description Séisme",
+        "magnitude": 7
+    }
+]
