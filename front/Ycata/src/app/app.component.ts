@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { filter } from 'rxjs';
 import { MapComponent } from './map/map.component';
 import { NavbarComponent } from "./navbar/navbar.component";
+import { FooterComponent } from "./footer/footer.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, NavbarComponent, MapComponent],
+  imports: [RouterModule, NavbarComponent, MapComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
