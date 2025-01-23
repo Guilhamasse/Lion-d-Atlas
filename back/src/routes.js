@@ -1,22 +1,21 @@
-const categoryController = require('./controllers/category');
+const alertController = require('./controllers/event');
+const eventController = require('./controllers/event');
+const eventTypeController = require('./controllers/eventType');
+const zoneController = require('./controllers/zone');
 
 const express = require('express');
 const router = express.Router();
 
-/**
- * @swagger
-    * /api/categories:
- * get:
- * summary: Retrieve a list of categories
- */
-router.get('/categories', categoryController.getAllCategories);
+router.get('/alert', alertController.getAllAlerts);
+router.get('/alert/:id', alertController.getAlertById);
 
-/**
- * @swagger
- * /api/category/{id}:
- * get:
- * summary: Retrieve a category by ID
- */
-router.get('/category/:id', categoryController.getCategoryById);
+router.get('/event', eventController.getAllEvents);
+router.get('/event/:id', eventController.getEventById);
+
+router.get('/event_type', eventTypeController.getAllEventTypes);
+router.get('/event_type/:id', eventTypeController.getEventTypeById);
+
+router.get('/zone', zoneController.getAllZones);
+router.get('/zone/:id', zoneController.getZoneById);
 
 module.exports = router;

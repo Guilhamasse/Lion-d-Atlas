@@ -1,37 +1,41 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const Category = sequelize.define('Category', {
-    categoryId: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
+const Zone = sequelize.define('Zone', {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
         primaryKey: true,
     },
     name: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(100),
         allowNull: false,
     },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
     color: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(7),
         allowNull: false,
         defaultValue: '#000000',
     },
-    updatedAt: {
+    updated_at: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
     },
-    createdAt: {
+    created_at: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW,
     },
 }, {
     timestamps: true,
-    updatedAt: 'updatedAt',
-    createdAt: 'createdAt',
-    tableName: 'category',
+    updatedAt: 'updated_at',
+    createdAt: 'created_at',
+    tableName: 'zone',
 });
 
-module.exports = Category;
+module.exports = Zone;
