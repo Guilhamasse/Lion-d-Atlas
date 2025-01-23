@@ -5,10 +5,11 @@ import { MapComponent } from './map/map.component';
 import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { IntroductionComponent } from "./introduction/introduction.component";
+import { AlertComponent } from "./alert/alert.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, NavbarComponent, MapComponent, FooterComponent, IntroductionComponent],
+  imports: [RouterModule, NavbarComponent, MapComponent, FooterComponent, IntroductionComponent, AlertComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
