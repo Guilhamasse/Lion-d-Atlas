@@ -17,6 +17,6 @@ jobs:
       - name: Build and Push Images to DockerHub
         run: |
           echo "Building and pushing image for lion-d-atlas..."
-          docker build -t "${{ secrets.DOCKERHUB_USERNAME }}/lion-d-atlas:${GITHUB_SHA}" . && \
+          docker build -t "${{ secrets.DOCKERHUB_USERNAME }}/lion-d-atlas:${GITHUB_SHA}" .
           docker push "${{ secrets.DOCKERHUB_USERNAME }}/lion-d-atlas:${GITHUB_SHA}")
 
