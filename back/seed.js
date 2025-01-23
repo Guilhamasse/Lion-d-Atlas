@@ -2,10 +2,11 @@
 const sequelize = require('./src/config/database');
 
 // Importing models
-const Event = require('./src/models/event');
+const Event = require('./src/models/Event');
 const EventType = require('./src/models/eventType');
 const Zone = require('./src/models/zone');
 const Alert = require('./src/models/alert');
+const Data = require('./src/models/data');
 
 // Importing helpers
 const logConsole = require('./src/helpers/logConsole')
@@ -23,6 +24,7 @@ const seedData = async () => {
         await EventType.drop();
         await Zone.drop();
         await Alert.drop();
+        await Data.drop();
         await sequelize.query('PRAGMA foreign_keys = ON');
 
         // Synchronize the database (drop all existing tables and recreate them)
@@ -39,6 +41,9 @@ const seedData = async () => {
         delete sample;
         const sample = require('./src/seed_data/event.json');
         await Event.bulkCreate(sample);
+        delete sample;
+        const sample = require('./src/seed_data/data.json');
+        await Data.bulkCreate(sample);
         delete sample;
 
         logConsole('Sample data inserted');

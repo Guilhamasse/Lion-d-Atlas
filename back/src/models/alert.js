@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Zone = require('./Zone');
+const Zone = require('./zone');
 
 const Alert = sequelize.define('Alert', {
     id: {

@@ -16,6 +16,16 @@ const EventType = sequelize.define('EventType', {
         type: DataTypes.TEXT,
         allowNull: true,
     },
+    level: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: null,
+    },
+    magnitude: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: null,
+    },
     updated_at: {
         type: DataTypes.DATE,
         allowNull: false,
