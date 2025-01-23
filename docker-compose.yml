@@ -4,7 +4,6 @@ services:
   back:
     build:
       context: ./back
-      dockerfile: Dockerfile
       args:
         - BACK_API_PORT=${BACK_API_PORT}
         - BACK_MAIL_FROM=${BACK_MAIL_FROM}
