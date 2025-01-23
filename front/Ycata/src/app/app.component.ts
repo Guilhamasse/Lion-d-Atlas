@@ -1,32 +1,17 @@
 import { RouterOutlet } from '@angular/router';
-import { Component, AfterViewInit } from '@angular/core';
-import * as L from 'leaflet';
+import { Component } from '@angular/core';
+import { MapComponent } from './map/map.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MapComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   title = 'Ycata';
 
 
-  //Génération de la map
-  private map!: L.Map;
-
-  ngAfterViewInit(): void {
-    this.map = L.map('map').setView([43.6045, 1.4442], 13);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(this.map);
-
-    // Triangle rouge 
-    L.polygon([
-      [43.6, 1.44],
-      [43.61, 1.45],
-      [43.61, 1.43],
-    ], { color: 'red' }).addTo(this.map).bindPopup("Zone 1");
-  }
+ 
+  
 }
