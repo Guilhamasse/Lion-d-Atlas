@@ -1,11 +1,11 @@
-// Import modules
-const bcrypt = require('bcrypt');
-
 // Import config
 const sequelize = require('./src/config/database');
 
 // Importing models
-const Category = require('./src/models/category');
+const Event = require('./src/models/event');
+const EventType = require('./src/models/eventType');
+const Zone = require('./src/models/zone');
+const Alert = require('./src/models/alert');
 
 // Importing helpers
 const logConsole = require('./src/helpers/logConsole')
@@ -19,15 +19,27 @@ const seedData = async () => {
 
         // Drop database tables (disable and re-enable foreign key checks)
         await sequelize.query('PRAGMA foreign_keys = OFF');
-        await Category.drop();
+        await Event.drop();
+        await EventType.drop();
+        await Zone.drop();
+        await Alert.drop();
         await sequelize.query('PRAGMA foreign_keys = ON');
 
         // Synchronize the database (drop all existing tables and recreate them)
         await sequelize.sync({ force: true });
 
-        // Sample data for Category table
-        const sampleCategories = require('./src/seed_data/categories.json');
-        await Category.bulkCreate(sampleCategories);
+        const sample = require('./src/seed_data/event_type.json');
+        await EventType.bulkCreate(sample);
+        delete sample;
+        const sample = require('./src/seed_data/zone.json');
+        await Zone.bulkCreate(sample);
+        delete sample;
+        const sample = require('./src/seed_data/alert.json');
+        await Alert.bulkCreate(sample);
+        delete sample;
+        const sample = require('./src/seed_data/event.json');
+        await Event.bulkCreate(sample);
+        delete sample;
 
         logConsole('Sample data inserted');
     } catch (error) {
