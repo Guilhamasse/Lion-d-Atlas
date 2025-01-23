@@ -20,3 +20,4 @@ jobs:
           echo "Building and pushing image for $app..."
           docker build -t "${{ secrets.DOCKERHUB_USERNAME }}/$app:${GITHUB_SHA}" . && \
           docker push "${{ secrets.DOCKERHUB_USERNAME }}/$app:${GITHUB_SHA}")
+
