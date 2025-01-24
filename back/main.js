@@ -40,8 +40,7 @@ const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // CORS middleware
-app.use(cors({
-}));
+app.use(cors());
 
 // Log middleware
 app.use((req, res, next) => {
