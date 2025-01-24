@@ -6,10 +6,13 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { Zone } from './zone/zone.model';
 import { ZoneComponent } from './zone/zone.component';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from "./footer/footer.component";
+import { IntroductionComponent } from "./introduction/introduction.component";
+import { AlertComponent } from "./alert/alert.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, NavbarComponent, MapComponent, ZoneComponent, CommonModule],
+  imports: [RouterModule, NavbarComponent, MapComponent, FooterComponent, IntroductionComponent, AlertComponent, ZoneComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
