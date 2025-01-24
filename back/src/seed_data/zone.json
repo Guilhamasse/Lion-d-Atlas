@@ -2,7 +2,31 @@
     {
         "id": 1,
         "name": "Zone 1",
-        "description": "This is zone 1",
-        "color": "#FF0000"
+        "description": "description Zone 1",
+        "color": "#ECA608"
+    },
+    {
+        "id": 2,
+        "name": "Zone 2",
+        "description": "description Zone 2",
+        "color": "#ECA608"
+    },
+    {
+        "id": 3,
+        "name": "Zone 3",
+        "description": "description Zone 3",
+        "color": "#ECA608"
+    },
+    {
+        "id": 4,
+        "name": "Zone 4",
+        "description": "description Zone 4",
+        "color": "#ECA608"
+    },
+    {
+        "id": 5,
+        "name": "Zone 5",
+        "description": "description Zone 5",
+        "color": "#ECA608"
     }
 ]

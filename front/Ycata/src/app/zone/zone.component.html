@@ -1,0 +1,12 @@
+<div (click)="toggleExpand()" class="zone-header" 
+     [style.background-color]="zoneBackgroundColor" 
+     [style.color]="zoneTextColor">
+  <h2>{{ zone.name }}</h2>
+  <span class="toggle-icon">{{ isExpanded ? '▲' : '▼' }}</span>
+</div>
+<div *ngIf="isExpanded" class="zone-content"
+[style.background-color]="zoneContentBackgroundColor" 
+[style.color]="zoneContentTextColor">
+  <h2>{{ zone.title || '' }}</h2>
+  <p>{{ zone.content || 'Rien à signaler' }}</p>
+</div>

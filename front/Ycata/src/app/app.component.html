@@ -2,5 +2,6 @@
 <app-navbar></app-navbar>
 <app-alert></app-alert>
 <app-introduction></app-introduction>
-<app-map></app-map>
+<app-zone *ngFor="let zone of zones" [zone]="zone"></app-zone>
+<app-map id="map"></app-map>
 <app-footer></app-footer>
