@@ -1,0 +1,23 @@
+.zone-header {
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+  
+  .toggle-icon {
+    font-size: 1.2em;
+  }
+  
+  .zone-content {
+    padding: 10px;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    border-top: none;
+  }
+  
