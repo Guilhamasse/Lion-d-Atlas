@@ -1,5 +1,5 @@
-<div class="flex flex-col text-center text-white bg-[#A4031F]" *ngIf="latestEvent">
-    <div class="mt-5 mb-5">
+<div class="alert" *ngIf="latestEvent">
+    <div class="alert__content">
         <p>ALERTE: {{latestEvent.name}}</p>
         <p>Lieu: Zone {{latestEvent.zone_id}}</p>
         <p>Magnitude: {{latestEvent.magnitude}}</p>
