@@ -1,7 +1,9 @@
-<div id="alert" class="flex flex-col text-center text-white bg-[#A4031F]">
+<div id="alert" class="flex flex-col text-center text-white bg-[#A4031F]" *ngIf="latestEvent">
     <div class="mt-5 mb-5">
-        <p>ALERTE: Séisme à proximité</p>
-        <p>Lieu: Zone 1</p>
-        <p>Attendez-vous à des secousses légères.</p>
+        <p>ALERTE: {{latestEvent.name}}</p>
+        <p>Lieu: Zone {{latestEvent.zone_id}}</p>
+        <p>Magnitude: {{latestEvent.magnitude}}</p>
+        <p>Sévérité: {{latestEvent.severity}}</p>
+        <p>Date: {{latestEvent.start_time | date:'short'}}</p>
     </div>
 </div>
