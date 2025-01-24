@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
-// import { PrimeNG } from 'primeng/config';
-import { CarouselModule } from 'primeng/carousel';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-activities',
-  imports: [CarouselModule, ButtonModule],
+  imports: [],
   templateUrl: './activities.component.html',
   styleUrl: './activities.component.scss'
 })
