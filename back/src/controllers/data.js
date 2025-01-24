@@ -28,9 +28,9 @@ const createEventFromDisaster = async (disasterData) => {
     let level = null;
     let magnitude = null;
 
-    if (disasterData.type_disaster.toLowerCase() === 'inondation') {
+    if (disasterData.type_disaster.toLowerCase() === 'inondations') {
       level = parseInt(disasterData.value_disaster) || 1;
-    } else if (disasterData.type_disaster.toLowerCase() === 'seisme') {
+    } else if (disasterData.type_disaster.toLowerCase() === 'séisme') {
       magnitude = parseFloat(disasterData.value_disaster) || null;
     }
 
