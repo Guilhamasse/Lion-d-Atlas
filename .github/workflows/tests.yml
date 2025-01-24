@@ -1,0 +1,134 @@
+name: Tests
+on:
+  workflow_call:
+    secrets:
+      DISCORD_WEBHOOK_URL:
+        required: true
+      SONAR_TOKEN:
+        required: true
+      SONAR_HOST_URL:
+        required: true
+jobs:
+  # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  # UNITS TESTS
+  # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Crawl and test services # ! NEED ALL SERVICES TO BE PROPERLY SETUP NODEJS APP
+        run: |
+          set -e
+          for dir in services/*/; do
+            if [ -f "$dir/package.json" ]; then
+              echo "Installing packages and running tests in $dir"
+              (cd "$dir" && npm install && npm run lint && npm run test)
+            fi
+          done
+  tests_failure_notify:
+    runs-on: ubuntu-latest
+    needs: tests
+    if: failure()
+    steps:
+      - name: Send tests failure message to Discord
+        run: |
+          MEME_URL=https://media1.tenor.com/m/QV2Gqa_NAYUAAAAd/kaamelott-guenievre.gif
+          BRANCH_NAME=${GITHUB_REF##*/}
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"Tests failed on branch $BRANCH_NAME! $MEME_URL\"}" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
+  tests_success_notify:
+    runs-on: ubuntu-latest
+    needs: tests
+    if: success()
+    steps:
+      - name: Send tests success message to Discord
+        run: |
+          MEME_URL=https://media1.tenor.com/m/sfDah7GtlNIAAAAd/kaamelott-leodagan.gif
+          BRANCH_NAME=${GITHUB_REF##*/}
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"Tests succeeded on branch $BRANCH_NAME! $MEME_URL\"}" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
+  # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  # Linting
+  # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  linting:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Crawl and test services # ! NEED ALL SERVICES TO BE PROPERLY SETUP NODEJS APP
+        run: |
+          set -e
+          for dir in services/*/; do
+            if [ -f "$dir/package.json" ]; then
+              echo "Installing packages and running linting in $dir"
+              (cd "$dir" && npm install && npm run lint && npm run test)
+            fi
+          done
+  linting_failure_notify:
+    runs-on: ubuntu-latest
+    needs: linting
+    if: failure()
+    steps:
+      - name: Send linting failure message to Discord
+        run: |
+          MEME_URL=https://media1.tenor.com/m/QV2Gqa_NAYUAAAAd/kaamelott-guenievre.gif
+          BRANCH_NAME=${GITHUB_REF##*/}
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"linting failed on branch $BRANCH_NAME! $MEME_URL\"}" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
+  linting_success_notify:
+    runs-on: ubuntu-latest
+    needs: linting
+    if: success()
+    steps:
+      - name: Send linting success message to Discord
+        run: |
+          MEME_URL=https://media1.tenor.com/m/sfDah7GtlNIAAAAd/kaamelott-leodagan.gif
+          BRANCH_NAME=${GITHUB_REF##*/}
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"Tests succeeded on branch $BRANCH_NAME! $MEME_URL\"}" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
+  # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  # SonarQube Analysis
+  # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  sonarqube_analysis:
+    runs-on: ubuntu-latest
+    needs: linting
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Run SonarQube scan
+        uses: sonarsource/sonarqube-scan-action@v3
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  sonarqube_analysis_failure_notify:
+    runs-on: ubuntu-latest
+    needs: sonarqube_analysis
+    if: failure()
+    steps:
+      - name: Send SonarQube failure message to Discord
+        run: |
+          MEME_URL=https://media1.tenor.com/m/QV2Gqa_NAYUAAAAd/kaamelott-guenievre.gif
+          BRANCH_NAME=${GITHUB_REF##*/}
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"SonarQube failed on branch $BRANCH_NAME! $MEME_URL\"}" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
+  sonarqube_analysis_success_notify:
+    runs-on: ubuntu-latest
+    needs: sonarqube_analysis
+    if: success()
+    steps:
+      - name: Send SonarQube success message to Discord
+        run: |
+          MEME_URL=https://media1.tenor.com/m/sfDah7GtlNIAAAAd/kaamelott-leodagan.gif
+          BRANCH_NAME=${GITHUB_REF##*/}
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"SonarQube succeeded on branch $BRANCH_NAME! $MEME_URL\"}" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
