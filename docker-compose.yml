@@ -9,6 +9,15 @@ services:
       - "${BACK_API_PORT}:${BACK_API_PORT}"
     networks:
       - lion-d-atlas_network
+  front:
+    build:
+      context: ./front/Ycata
+      dockerfile: dockerfile
+    ports:
+      - "${FRONT_PORT}:${FRONT_PORT}"
+    networks:
+      - lion-d-atlas_network
+      
 
 networks:
   lion-d-atlas_network:
