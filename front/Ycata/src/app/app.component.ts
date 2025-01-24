@@ -6,10 +6,11 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { FooterComponent } from "./footer/footer.component";
 import { IntroductionComponent } from "./introduction/introduction.component";
 import { AlertComponent } from "./alert/alert.component";
+import { ActivitiesComponent } from "./activities/activities.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule, NavbarComponent, MapComponent, FooterComponent, IntroductionComponent, AlertComponent],
+  imports: [RouterModule, NavbarComponent, MapComponent, FooterComponent, IntroductionComponent, AlertComponent, ActivitiesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
