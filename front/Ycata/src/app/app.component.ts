@@ -9,6 +9,7 @@ import { ZoneComponent } from './zone/zone.component';
 import { FooterComponent } from "./footer/footer.component";
 import { IntroductionComponent } from "./introduction/introduction.component";
 import { AlertComponent } from "./alert/alert.component";
+import { PartComponent } from "./part/part.component";
 
 @Component({
   selector: 'app-root',
@@ -21,8 +22,9 @@ import { AlertComponent } from "./alert/alert.component";
     FooterComponent,
     IntroductionComponent,
     AlertComponent,
-    ZoneComponent
-  ],
+    ZoneComponent,
+    PartComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
