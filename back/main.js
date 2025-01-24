@@ -40,11 +40,7 @@ const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // CORS middleware
-app.use(cors({
-    origin: process.env.VITE_APP_URL,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 
 // Log middleware
 app.use((req, res, next) => {
@@ -67,8 +63,8 @@ app.use(({ res }) => {
 sequelize.sync()
     .then(() => {
         logConsole('Database & tables created!');
-        app.listen(process.env.BACK_API_PORT, () => {
-            logConsole(`Listening on http://localhost:${process.env.BACK_API_PORT}/`);
+        app.listen(process.env.BACK_API_PORT || 3001, () => {
+            logConsole(`Listening on http://localhost:${process.env.BACK_API_PORT || 3001}/`);
         });
     })
     .catch(err => {

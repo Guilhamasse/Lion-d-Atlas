@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const backendUrl = "http://localhost:3000/api/data";
+const backendUrl = "http://localhost:3001/api/data";
 
 const sensors = [
   { id: null, zone: 1, allowedDisasters: ["séisme"] },
