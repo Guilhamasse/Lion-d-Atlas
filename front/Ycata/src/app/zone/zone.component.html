@@ -7,6 +7,6 @@
 <div *ngIf="isExpanded" class="zone-content"
 [style.background-color]="zoneContentBackgroundColor" 
 [style.color]="zoneContentTextColor">
-  <h2>{{ zone.title || '' }}</h2>
-  <p>{{ zone.content || 'Rien à signaler' }}</p>
+  <h2>{{ zone.name || '' }}</h2>
+  <p>{{ zone.description || 'Rien à signaler' }}</p>
 </div>
